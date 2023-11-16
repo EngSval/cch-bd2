@@ -6,15 +6,10 @@ import java.util.stream.Collectors;
 
 import br.com.bd2.fornecedor.dto.FornecedorDto;
 import br.com.bd2.fornecedor.orm.Fornecedor;
-import br.com.bd2.produto.converter.ProdutoConverter;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
 
 @RequestScoped
 public class FornecedorConverter {
-
-    @Inject
-    ProdutoConverter produtoConverter;
     
     public Fornecedor dtoToOrm(FornecedorDto dto, Fornecedor orm) {
 
@@ -34,7 +29,6 @@ public class FornecedorConverter {
         dto.setIdFornecedor(String.valueOf(orm.getIdFornecedor()));
         dto.setDsFornecedor(orm.getDsFornecedor());
 
-        //dto.setProdutoList(produtoConverter.ormListToDtoList(orm.getProdutoList()));
         return dto;
     }
 
