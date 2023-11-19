@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import br.com.bd2.venda.orm.Venda;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,8 +29,8 @@ public class Funcionario extends PanacheEntityBase {
     @GenericGenerator(name = "ulid", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID idFuncionario;
 
-    /* @OneToMany(mappedBy = "fornecedor", fetch = FetchType.LAZY)
-	private List<Venda> vendaList = new ArrayList<>(); */
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY)
+	private List<Venda> vendaList = new ArrayList<>();
 
     /**
      * Nome
@@ -93,6 +94,14 @@ public class Funcionario extends PanacheEntityBase {
 
     public void setDsFuncao(String dsFuncao) {
         this.dsFuncao = dsFuncao;
+    }
+
+    public List<Venda> getVendaList() {
+        return vendaList;
+    }
+
+    public void setVendaList(List<Venda> vendaList) {
+        this.vendaList = vendaList;
     }
 
     

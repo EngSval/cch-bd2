@@ -3,6 +3,8 @@ package br.com.bd2.funcionario.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.bd2.venda.dto.VendaDto;
+
 public class FuncionarioDto {
     
     /**
@@ -10,7 +12,7 @@ public class FuncionarioDto {
      */
     private String idFuncionario;
 
-   /*  private List<VendaDto> vendaList = new ArrayList<>(); */
+    private List<VendaDto> vendaList = new ArrayList<>();
 
     /**
      * Nome
@@ -70,6 +72,14 @@ public class FuncionarioDto {
 
     public void setDsFuncao(String dsFuncao) {
         this.dsFuncao = dsFuncao;
+    }
+
+    public List<VendaDto> getVendaList() {
+        return vendaList;
+    }
+
+    public void setVendaList(List<VendaDto> vendaList) {
+        this.vendaList = vendaList;
     }
 
     
