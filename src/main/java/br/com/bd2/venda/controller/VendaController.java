@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.bd2.exception.EstoqueException;
 import br.com.bd2.funcionario.orm.Funcionario;
 import br.com.bd2.item.controller.ItemController;
 import br.com.bd2.item.converter.ItemConverter;
@@ -42,7 +43,14 @@ public class VendaController {
         
         vendaDto.getItemList().forEach(item -> {
             Produto produto = Produto.findById(UUID.fromString(item.getProduto().getIdProduto()));
+
+            var estoque = produto.getNrQuantidade();
             var quantidade = item.getNrQuantidade();
+
+            if((estoque - quantidade) < 0) {
+                throw new EstoqueException("Não há produtos suficientes no estoque!");
+            }
+
             var valor = produto.getNrValor();
             var valorParcial = quantidade * valor;
             item.setNrValorParcial(valorParcial);
